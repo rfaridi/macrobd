@@ -58,20 +58,6 @@ data_save_bb(path=path.file,
 
 
 
-# Test the function
-sheet="Table IA"
-skip=25
-max=50
-begin="jul12"
-end="jun13"
-cols=c(1,9,10)
-yrs="2014"
-start="2012-July"
-vnames=c(month="Months",
-dp.dd="Deposits with DMBs from demand deposits",
-dp.td="Deposits with DMBs from time deposits")
-
-
 path.file <- "./data-raw/statisticaltable_2014.xls"
 data_save_bb(path=path.file,
 	     sheet="Table IA",
