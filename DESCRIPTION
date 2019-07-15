@@ -1,13 +1,17 @@
 Package: macrobd
-Title: What the Package Does (One Line, Title Case)
+Title: Macro Data on Bangladesh Economy
 Version: 0.0.0.9000
 Authors@R: 
-    person(given = "First",
-           family = "Last",
+    person(given = "Rushad",
+           family = "Faridi",
            role = c("aut", "cre"),
-           email = "first.last@example.com",
+           email = "rushad.16@gmail.com",
            comment = c(ORCID = "YOUR-ORCID-ID"))
 Description: What the package does (one paragraph).
 License: What license it uses
 Encoding: UTF-8
 LazyData: true
+Suggests: 
+    spelling,
+    testthat (>= 2.1.0)
+Language: en-US
