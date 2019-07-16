@@ -53,7 +53,6 @@ deposit.td <- deposit.ts %>%
     filter_index("2018" ~ .) %>% 
     ggplot() + 
        geom_line(aes(date,dp.td,group=""), color="blue") 
-
 deposit.dd + deposit.td
 ```
 
