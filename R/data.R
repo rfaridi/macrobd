@@ -1,10 +1,3 @@
-#'Macro BD
-#'
-#' macrobd package includes data from economic trends of Bangladesh
-#'
-#' @format  There are two data frames
-
-
 #'deposit 
 #'
 #' deposit includes data on demand deposits
