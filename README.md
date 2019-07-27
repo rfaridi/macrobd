@@ -1,17 +1,3 @@
----
-output: github_document
----
-
-<!-- README.md is generated from README.Rmd. Please edit that file -->
-
-```{r, include = FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>",
-  fig.path = "man/figures/README-",
-  out.width = "100%"
-)
-```
 # macrobd
 
 <!-- badges: start -->
@@ -21,19 +7,23 @@ The goal of macrobd is to ...
 
 ## Installation
 
-You can install the released version of macrobd from [CRAN](https://CRAN.R-project.org) with:
+`macrobd` is not yet available on CRAN. But you can install the development version by issuing
+the following command:
 
-``` r
-install.packages("macrobd")
+``` 
+devtools::install_github("rfarid/macrobd")
 ```
 
 ## Example
 
+```
+head(deposit)
+head(money)
+```
 
-# Some analysis
 
-
-```{r}
+```
+library(ggplot2)
 library(patchwork)
 money.ts <- as.tsibble(money)
 
@@ -47,7 +37,6 @@ deposit.dd <- deposit.ts %>%
     filter_index("2018" ~ .) %>% 
     ggplot() + 
        geom_line(aes(date,dp.dd,group=""))
-
 
 deposit.td <- deposit.ts %>% 
     filter_index("2018" ~ .) %>% 
