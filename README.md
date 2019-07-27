@@ -3,7 +3,7 @@
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of macrobd is to ...
+The goal of macrobd is to provide easy access to macro data of Bangladesh. 
 
 ## Installation
 
