@@ -1,3 +1,5 @@
+.gitignore
 .Rhistory
 .RData
 .Rproj.user
+.~lock*

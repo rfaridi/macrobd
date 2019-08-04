@@ -1,4 +1,9 @@
-data_extract_bb  <- function(org.df,cols,yrs="2016",start.date="2015-July",var.names){
+library(readxl)
+library(dplyr)
+library(zoo) 
+library(lubridate)
+library(janitor)
+data_extract_bb  <- function(org.df,cols,yrs,start.date,var.names){
     new.df <- org.df %>% 
 		select(cols) 
     names(new.df)  <- names(var.names)
