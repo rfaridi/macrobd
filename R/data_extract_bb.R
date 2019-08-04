@@ -1,8 +1,5 @@
-library(readxl)
-library(dplyr)
-library(zoo) 
-library(lubridate)
-library(janitor)
+# This function is no longer required, merged into data_save_bb
+
 data_extract_bb  <- function(org.df,cols,yrs,start.date,var.names){
     new.df <- org.df %>% 
 		select(cols) 

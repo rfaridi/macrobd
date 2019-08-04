@@ -1,17 +1,10 @@
-data_save_bb <- function(path.name,sheet.name,skip.row,max.row,cols,yrs,start.date,var.names){
-	   data_imp_bb(path.name=path.name,
-	    sheet.name=sheet.name,
-	    skip.row=skip.row,
-	    max.row=max.row)  %>% 
-       data_extract_bb(
-		       cols=cols,
-		       yrs=yrs,
-		       start.date=start.date,
-		       var.names=var.names)
+library(readxl)
+library(dplyr)
+library(zoo) 
+library(lubridate)
+library(janitor)
 
-}
-
-data_save_bb2 <- function(path.name=NULL,sheet.name=NULL,skip.row=NULL,max.row=NULL,cols=NULL,yrs=NULL,start.date=NULL,var.names=NULL){
+data_save_bb <- function(path.name=NULL,sheet.name=NULL,skip.row=NULL,max.row=NULL,cols=NULL,yrs=NULL,start.date=NULL,var.names=NULL){
 	   read.row <- max.row - skip.row
     read.df <- read_excel(path.name, sheet=sheet.name,skip=skip.row,n_max=read.row, col_names=FALSE)
     read.df.clean <- read.df %>% 
