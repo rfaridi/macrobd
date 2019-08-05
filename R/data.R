@@ -1,3 +1,14 @@
+#'inflation 
+#'
+#' \code{inflation} represents data on variables that measures inflation in Bangladesh. Both \code{point to point} and \code{12 month average} measures are included. Some of the measures are with base 1995-96 and the recent ones are with base 2005-06.
+#'
+#' @format A data frame with four variables: \code{date}, \code{inf_p2p_05},
+#'   \code{inf_p2p_95}, \code{inf_12m_05}, \code{inf_12m_95}. \code{date} starts from Fiscal year 2010, that is July 1, 2010 and ends on April 01, 2019. \code{inf_p2p_05} and \code{inf_p2p_95}  represents point to point inflation with 2005 and 1995 base respectively. \code{inf_12m_05}  and \code{inf_12m_95} represents tweleve month average inflation, again respectively  for two base period mentioned above. 
+"inflation"
+
+
+
+
 #'deposit 
 #'
 #' deposit includes data on demand deposits
