@@ -5,7 +5,7 @@
 \alias{inflation}
 \title{inflation}
 \format{A data frame with four variables: \code{date}, \code{inf_p2p_05},
-  \code{inf_p2p_95}, \code{inf_12m_05}, \code{inf_12m_95}. \code{date} starts from Fiscal year 2010, that is July 1, 2010 and ends on April 01, 2019. \code{inf_p2p_05} and \code{inf_p2p_95}  represents point to point inflation with 2005 and 1995 base respectively. \code{inf_12m_05}  and \code{inf_12m_95} represents tweleve month average inflation, again respectively  for two base period mentioned above.}
+  \code{inf_p2p_95}, \code{inf_12m_05}, \code{inf_12m_95}. \code{date} starts from Fiscal year 2010, that is July 1, 2010 and ends on July 01, 2020. \code{inf_p2p_05} and \code{inf_p2p_95}  represents point to point inflation with 2005 and 1995 base respectively. \code{inf_12m_05}  and \code{inf_12m_95} represents tweleve month average inflation, again respectively  for two base period mentioned above.}
 \usage{
 inflation
 }

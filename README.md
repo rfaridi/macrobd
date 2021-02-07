@@ -5,12 +5,12 @@
 
 The goal of macrobd is to provide easy access to macro data of Bangladesh. Currently, timeseries data on following variables are available: 
 
-* Inflation (2010 - 2019) (inflation) 
-* Foreign Trade (2010 - 2019)  (foreign_trade) 
-* Exchange rate (2010 - 2019) (exhange.rate)
-* Foreign exchange reserve (2010 - 2019) (foreign_trade)
-* Demand deposit (2009 -2019) (demand)
-* Monetary variables: M1, M2 (2009 - 2019) (money)
+* Inflation (2010 - 2020) (inflation) 
+* Foreign Trade (2010 - 2020)  (foreign_trade) 
+* Exchange rate (2010 - 2020) (exhange.rate)
+* Foreign exchange reserve (2010 - 2020) (foreign_trade)
+* Demand deposit (2009 -2020) (demand)
+* Monetary variables: M1, M2 (2009 - 2020) (money)
 
 
 ## Installation

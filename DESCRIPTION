@@ -18,3 +18,5 @@ Language: en-US
 URL: https://github.com/rfaridi/macrobd
 BugReports: https://github.com/rfaridi/macrobd/issues
 RoxygenNote: 6.1.1
+Depends: 
+    R (>= 2.10)
