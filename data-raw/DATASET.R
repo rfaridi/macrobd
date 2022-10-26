@@ -7,16 +7,7 @@ file.list <- c("2022_june_econIndBB.xlsx",
 	  "2016_aug_econIndBB.xls")
 
  #--------------- Inflation --------------
-
-# Added june 2022 data on 13th July, 2022
-
-TableIB.file.list <- c("statisticaltable_june_2022.xlsx",
-		       "statisticaltable_feb_2021.xlsx",
-		       "2019_june_statisticaltable.xlsx",
-		       "statisticaltable_sep2017.xlsx", 
-		       "statisticaltable_aug2016.xls", 
-		       "statisticaltable_2014.xls",
-		       "BB_sep9_2012.xls")
+TableIB.file.list <- file.list
 TableIB.skiprow.june22 <- 31
 TableIB.maxrow.june22 <- 54 
 TableIB.skiprow  <- c(TableIB.skiprow.june22,
@@ -37,14 +28,20 @@ inf_12m_05="12-Month average base 2005-2006",
 inf_12m_95="12-Month average base 1995-96")
 
 
-inflation <- get_bb_dat(files=TableIB.file.list, sheet.name="Table IB",
-                      skip.row=TableIB.skiprow,max.row=TableIB.maxrow,
-                      cols=inf.colsno,yrs=TableIB.yrs,start.date=TableIB.startdate,
-                      var.names=inf.varnames) 
+inflation <- get_bb_dat(files=TableIB.file.list, 
+			iter=length(TableIB.file.list),
+			sheet.name="Table IB",
+			skip.row=TableIB.skiprow,
+			max.row=TableIB.maxrow,
+			cols=inf.colsno,
+			yrs=TableIB.yrs,
+			start.date=TableIB.startdate,
+			var.names=inf.varnames) 
   
 use_data(inflation, overwrite=TRUE)
 
 # Inflation details
+
 TableVII.file.list <- c("2022_june_econIndBB.xlsx",
           "2021_feb_econIndBB.xlsx",
           "2019_june_econIndBB.xlsx",
@@ -82,9 +79,10 @@ infDet.var.names <- c("month",
 	       "cpi_recreation",
 	       "cpi_misc")
 
+#TableVII.file.list <- TableVII.file.list[2]
 
 inf_det <- get_bb_dat(files=TableVII.file.list,
-		      iter=1,
+		      iter=length(TableVII.file.list),
 			 sheet.name="Table VII",
                          skip.row=TableVII.skiprow,
 			 max.row=TableVII.maxrow,
