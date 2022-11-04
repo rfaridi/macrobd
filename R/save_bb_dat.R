@@ -5,36 +5,46 @@ library(lubridate)
 library(janitor)
 
 save_bb_dat <- function(path.name=NULL,
-			sheet.name=NULL,
-			skip.row=NULL,
-			max.row=NULL,
-			cols_no=NULL,
-			yrs=NULL,
-			start.date=NULL,
-			var.names=NULL){
-read.row <- max.row - skip.row
-read.df <- read_excel(path.name, 
-		      sheet=sheet.name,
-		      skip=skip.row,
+			s.sheet.name=NULL,
+			s.skip.row=NULL,
+			s.max.row=NULL,
+			s.cols=NULL,
+			s.yrs=NULL,
+			s.start.date=NULL,
+			s.var.names=NULL){
+read.row <- s.max.row - s.skip.row
+read.df <- read_excel(paste0("./data-raw/",path.name), 
+		      sheet=s.sheet.name,
+		      skip=s.skip.row,
 		      n_max=read.row, 
-		      col_names=FALSE)
+		      col_names=FALSE) %>% 
+                      remove_empty("cols") %>% 
+		      remove_empty("rows") %>% 
+                      select(all_of(unlist(s.cols)))
+
+names(read.df)  <- names(s.var.names)
+
 read.df.clean <- read.df %>% 
-		janitor::remove_empty("cols") %>% 
-		janitor::remove_empty("rows") %>% 
-                dplyr::select(cols_no) 
-names(read.df.clean)  <- names(var.names)
-read.df.clean <- read.df.clean %>% 
-		    dplyr::filter(!str_detect(month,yrs)) 
-date.zoo <- zoo::zooreg(1:nrow(read.df.clean),zoo::as.yearmon(start.date,format="%Y-%B"),freq=12)
-new.df  <-  read.df.clean %>% 
+                filter(str_detect(month,"^((?!OB).)*$")) %>% 
+                mutate(month=str_replace(month,"(.+)\\(.+","\\1"),
+		       month=str_trim(month)) 
+
+read.df2 <- read.df.clean %>% 
+		    dplyr::filter(!str_detect(month,s.yrs)) 
+
+date.zoo <- zoo::zooreg(1:nrow(read.df2),
+			zoo::as.yearmon(s.start.date,
+					format="%Y-%B"),
+			freq=12)
+
+new.df  <-  read.df2 %>% 
 		mutate(date=index(date.zoo),
 		       date=as_date(date)) %>% 
 		dplyr::select(-month) %>% 
-		dplyr::select(date,everything()) %>% 
-		mutate_at(vars(-date),as.numeric)
+		dplyr::relocate(date) %>% 
+		mutate(across(-date,as.numeric))
     return(new.df)
 }
 
-#---- testing purpose ---
 
 
