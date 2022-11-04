@@ -1,3 +1,150 @@
+#------------ Table IA --------------
+library(janitor)
+library(readxl)
+library(zoo)
+library(lubridate)
+
+path.name <- TableIA.file.list[6]
+s.maxrow  <- TableIA.maxrow[6]
+s.skiprow  <- TableIA.skiprow[6]
+s.yrs  <- TableIA.yrs[6]
+s.startdate <- TableIA.startdate[6] 
+s.sheetname  <- TableIA.sheetname[6]
+s.varnames <- TableIA.varnames
+s.cols <- TableIA.colsno[6]
+
+read.row <- s.maxrow - s.skiprow
+
+read.df <- read_excel(paste0("./data-raw/",path.name), 
+		      sheet=s.sheetname,
+		      skip=s.skiprow,
+		      n_max=read.row, 
+		      col_names=FALSE) %>% 
+                     remove_empty("cols") %>% 
+		     remove_empty("rows")  %>% 
+                     select(all_of(unlist(s.cols)))
+
+names(read.df)  <- names(s.varnames)
+read.df.clean <- read.df %>% 
+                filter(str_detect(month,"^((?!OB).)*$")) %>% 
+                mutate(month=str_replace(month,"(.+)\\(.+","\\1"),
+		       month=str_trim(month)) 
+		
+read.df2 <- read.df.clean %>% 
+		    dplyr::filter(!str_detect(month,s.yrs)) 
+date.zoo <- zoo::zooreg(1:nrow(read.df2),
+			zoo::as.yearmon(s.startdate,
+					format="%Y-%B"),
+			freq=12)
+new.df  <-  read.df2 %>% 
+		mutate(date=index(date.zoo),
+		       date=as_date(date)) %>% 
+		dplyr::select(-month) %>% 
+		dplyr::relocate(date) %>% 
+		mutate(across(-date,as.numeric))
+    return(new.df)
+
+
+
+
+#------------ Table IA --------------
+
+library(janitor)
+library(readxl)
+library(zoo)
+library(lubridate)
+
+path.name <- TableIA.file.list[1]
+s.maxrow  <- TableIA.maxrow[1]
+s.skiprow  <- TableIA.skiprow[1]
+s.yrs  <- TableIA.yrs[1]
+s.startdate <- TableIA.startdate[1] 
+s.sheetname  <- TableIA.sheetname[1]
+s.varnames <- TableIA.varnames
+s.cols <- TableIA.colsno[1]
+
+read.row <- s.maxrow - s.skiprow
+
+read.df <- read_excel(paste0("./data-raw/",path.name), 
+		      sheet=s.sheetname,
+		      skip=s.skiprow,
+		      n_max=read.row, 
+		      col_names=FALSE) %>% 
+                     remove_empty("cols") %>% 
+		     remove_empty("rows")  %>% 
+                     select(all_of(unlist(s.cols)))
+
+names(read.df)  <- names(s.varnames)
+read.df.clean <- read.df %>% 
+                filter(str_detect(month,"^((?!OB).)*$")) %>% 
+                mutate(month=str_replace(month,"(.+)\\(.+","\\1"),
+		       month=str_trim(month)) 
+		
+read.df2 <- read.df.clean %>% 
+		    dplyr::filter(!str_detect(month,s.yrs)) 
+date.zoo <- zoo::zooreg(1:nrow(read.df2),
+			zoo::as.yearmon(s.startdate,
+					format="%Y-%B"),
+			freq=12)
+new.df  <-  read.df2 %>% 
+		mutate(date=index(date.zoo),
+		       date=as_date(date)) %>% 
+		dplyr::select(-month) %>% 
+		dplyr::relocate(date) %>% 
+		mutate(across(-date,as.numeric))
+    return(new.df)
+
+
+
+#------------ Table IV --------------
+library(janitor)
+library(readxl)
+library(zoo)
+library(lubridate)
+
+path.name <- TableIA.file.list[6]
+s.max.row  <- TableIA.maxrow[6]
+s.skip.row  <- TableIA.skiprow[6]
+s.yrs  <- TableIA.yrs[6]
+s.start.date <- TableIA.startdate[6] 
+s.sheet.name  <- TableIA.sheetname[6]
+s.var.names <- TableIA.varnames
+s.cols <- TableIA.colsno[6]
+
+read.row <- s.max.row - s.skip.row
+
+read.df <- read_excel(paste0("./data-raw/",path.name), 
+		      sheet=s.sheet.name,
+		      skip=s.skip.row,
+		      n_max=read.row, 
+		      col_names=FALSE) %>% 
+                     remove_empty("cols") %>% 
+		     remove_empty("rows")  %>% 
+                     select(all_of(unlist(s.cols)))
+
+names(read.df)  <- names(s.var.names)
+read.df.clean <- read.df %>% 
+                filter(str_detect(month,"^((?!OB).)*$")) %>% 
+                mutate(month=str_replace(month,"(.+)\\(.+","\\1"),
+		       month=str_trim(month)) 
+		
+read.df2 <- read.df.clean %>% 
+		    dplyr::filter(!str_detect(month,s.yrs)) 
+date.zoo <- zoo::zooreg(1:nrow(read.df2),
+			zoo::as.yearmon(s.start.date,
+					format="%Y-%B"),
+			freq=12)
+new.df  <-  read.df2 %>% 
+		mutate(date=index(date.zoo),
+		       date=as_date(date)) %>% 
+		dplyr::select(-month) %>% 
+		dplyr::relocate(date) %>% 
+		mutate(across(-date,as.numeric))
+    return(new.df)
+
+
+#-------- Table IB -----
+
 
 path.name <- TableIB.file.list[1]
 s.max.row  <- TableIB.maxrow[1]
